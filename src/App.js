@@ -19,7 +19,7 @@ const switchTestPropsHandler = () =>{
   })};
 //   this.setState({
 //     Test: [
-//       {testProps : "new shit"}
+//       {testProps : "new something"}
 //     ]
 //   })
 // }
@@ -29,7 +29,9 @@ const switchTestPropsHandler = () =>{
     <div className="App">
     <button onClick={switchTestPropsHandler}>click me to get new shit</button>
    <Test testProps="this is the test property of my application"/>
-   <Test testProps={testState.Test[0].testProps}>I'm testing if the child will show up or not</Test>
+   <Test 
+   testProps={testState.Test[0].testProps}
+   click={switchTestPropsHandler}>I'm testing if the child will show up or not</Test>
     </div>
   );
 }

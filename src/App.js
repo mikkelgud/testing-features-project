@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import SmartInput from './SmartInput';
 import './App.css';
 import Test from './BestInTest';
 
@@ -13,9 +14,12 @@ const App = props => {
     });
 
 
-const switchTestPropsHandler = () =>{
+const switchTestPropsHandler = (newTestProps) =>{
+  if(newTestProps === "Mikkel"){
+    console.log("cool guy just entered the application")
+  }
   setTestState({
-    Test: [{testProps : "I'm the newest beast"}]
+    Test: [{testProps : newTestProps}]
   })};
 //   this.setState({
 //     Test: [
@@ -23,15 +27,24 @@ const switchTestPropsHandler = () =>{
 //     ]
 //   })
 // }
+
+const userInputTestTextOnChangeHandler = (event) =>{
+  setTestState({
+     Test: [{testProps: event.target.value.toUpperCase()}]
+    })
+}
     
     // render(){
+
   return (
     <div className="App">
-    <button onClick={switchTestPropsHandler}>click me to get new shit</button>
-   <Test testProps="this is the test property of my application"/>
-   <Test 
-   testProps={testState.Test[0].testProps}
-   click={switchTestPropsHandler}>I'm testing if the child will show up or not</Test>
+     <Test testProps="this is the test property of my application">I'm testing if the child will show up or not</Test>
+      <Test 
+      testProps={testState.Test[0].testProps}
+      clicked={switchTestPropsHandler.bind(switchTestPropsHandler,"NEW TESTPROPS")}
+      > please write here to change name: <SmartInput  changed={userInputTestTextOnChangeHandler}/></Test>
+       
+      <button onClick={switchTestPropsHandler.bind(switchTestPropsHandler,"Mikkel")}>click me to get new shit</button>
     </div>
   );
 }
